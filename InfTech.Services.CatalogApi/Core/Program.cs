@@ -1,8 +1,12 @@
-
+using InfTech.Services.CatalogApi.Domain.Repositories;
+using InfTech.Services.CatalogApi.Domain.Services;
+using InfTech.Services.CatalogApi.Infrastructure.Config;
+using InfTech.Services.CatalogApi.Infrastructure.Repositories;
 using InfTech.Services.CatalogApi.Infrastructure.Repositories.Data.Configuration;
+using InfTech.Services.CatalogApi.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace InfTech.Services.CatalogApi
+namespace InfTech.Services.CatalogApi.Core
 {
     public class Program
     {
@@ -20,6 +24,11 @@ namespace InfTech.Services.CatalogApi
 
             builder.Services.AddDbContext<CatalogDbContext>(options
                 => options.UseSqlServer(builder.Configuration.GetConnectionString(ConnectionStringName)));
+
+            builder.Services.AddAutoMapper(cfg => cfg.AddProfile<CatalogMapperProfile>(), AppDomain.CurrentDomain.GetAssemblies());
+
+            builder.Services.AddTransient<IProductRepository, ProductRepository>();
+            builder.Services.AddTransient<IProductService, ProductService>();
 
             var app = builder.Build();
 
