@@ -1,6 +1,7 @@
 ﻿using InfTech.Services.CatalogApi.Domain.Entities;
 using InfTech.Services.CatalogApi.Domain.Repositories;
 using InfTech.Services.CatalogApi.Infrastructure.Repositories.Data.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 namespace InfTech.Services.CatalogApi.Infrastructure.Repositories
 {
@@ -11,32 +12,32 @@ namespace InfTech.Services.CatalogApi.Infrastructure.Repositories
         {
             _catalogDbContext = catalogDbContext;
         }
-        public void Add(Product entity)
+        public async Task Add(Product entity)
         {
             _catalogDbContext.Products.Add(entity);
-            _catalogDbContext.SaveChanges();
+            await _catalogDbContext.SaveChangesAsync();
         }
 
-        public void Delete(Product entity)
+        public async Task Delete(Product entity)
         {
             _catalogDbContext.Products.Remove(entity);
-            _catalogDbContext.SaveChanges();
+            await _catalogDbContext.SaveChangesAsync();
         }
 
-        public Product Get(int id)
+        public async Task<Product> Get(int id)
         {
-            return _catalogDbContext.Products.Find(id);
+            return await _catalogDbContext.Products.FindAsync(id);
         }
 
-        public List<Product> Get()
+        public async Task<IEnumerable<Product>> Get()
         {
-            return _catalogDbContext.Products.ToList();
+            return await _catalogDbContext.Products.ToListAsync();
         }
 
-        public void Update(Product entity)
+        public async Task Update(Product entity)
         {
             _catalogDbContext.Update(entity);
-            _catalogDbContext.SaveChanges();
+            await _catalogDbContext.SaveChangesAsync();
         }
     }
 }

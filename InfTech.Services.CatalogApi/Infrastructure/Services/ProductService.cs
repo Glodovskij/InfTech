@@ -15,34 +15,34 @@ namespace InfTech.Services.CatalogApi.Infrastructure.Services
             _productRepository = productRepository;
             _mapper = mapper;
         }
-        public void Add(ProductDto entity)
+        public async Task Add(ProductDto entity)
         {
             var product = _mapper.Map<Product>(entity);
-            _productRepository.Add(product);
+            await _productRepository.Add(product);
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            var product = _productRepository.Get(id);
-            _productRepository.Delete(product);
+            var product = await _productRepository.Get(id);
+            await _productRepository.Delete(product);
         }
 
-        public ProductDto Get(int id)
+        public async Task<ProductDto> Get(int id)
         {
-            var product = _productRepository.Get(id);
+            var product = await _productRepository.Get(id);
             return _mapper.Map<ProductDto>(product);
         }
 
-        public List<ProductDto> Get()
+        public async Task<IEnumerable<ProductDto>> Get()
         {
-            var products = _productRepository.Get();
-            return _mapper.Map<List<ProductDto>>(products);
+            var products = await _productRepository.Get();
+            return _mapper.Map<IEnumerable<ProductDto>>(products);
         }
 
-        public void Update(ProductDto entity)
+        public async Task Update(ProductDto entity)
         {
             var product = _mapper.Map<Product>(entity);
-            _productRepository.Update(product);
+            await _productRepository.Update(product);
         }
     }
 }

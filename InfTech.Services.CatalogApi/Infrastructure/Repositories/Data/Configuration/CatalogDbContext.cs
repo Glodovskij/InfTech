@@ -10,6 +10,6 @@ namespace InfTech.Services.CatalogApi.Infrastructure.Repositories.Data.Configura
             Database.EnsureCreated();
         }
 
-        public DbSet<Product> Products { get; }
+        public DbSet<Product> Products { get; set; }
     }
 }
