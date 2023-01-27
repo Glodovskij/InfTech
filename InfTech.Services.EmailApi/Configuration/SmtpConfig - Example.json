@@ -1,0 +1,10 @@
+{
+  // Make a copy of this file on your local machine, put it in the Configuration folder, rename it to 'SmtpConfig.json' and fill it with your values.
+  "SmtpConfiguration": {
+    "Username": "**********@gmail.com",
+    "Password": "****************", // Make sure that you enabled two factor authentication and created the application password in your account settings.
+                                    // Use here created password. Otherwise google won't allow you to send emails via SMTP because of security policies.
+    "Host": "smtp.gmail.com", // Default google smtp server
+    "Port": 587 // Default google smtp port
+  }
+}
