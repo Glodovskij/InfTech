@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfTech.Services.CatalogApi", "InfTech.Services.CatalogApi\InfTech.Services.CatalogApi.csproj", "{25976B49-FD02-4681-86A9-5E7CF0CC754E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfTech.Services.EmailApi", "InfTech.Services.EmailApi\InfTech.Services.EmailApi.csproj", "{483D8C58-2739-40E4-BFCD-06E3367A8D80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfTech.Services.EmailApi", "InfTech.Services.EmailApi\InfTech.Services.EmailApi.csproj", "{483D8C58-2739-40E4-BFCD-06E3367A8D80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfTech.GatewayApi", "InfTech.GatewayApi\InfTech.GatewayApi.csproj", "{EFA7A70A-6D87-4C97-A006-318CE1D06457}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{483D8C58-2739-40E4-BFCD-06E3367A8D80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{483D8C58-2739-40E4-BFCD-06E3367A8D80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{483D8C58-2739-40E4-BFCD-06E3367A8D80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFA7A70A-6D87-4C97-A006-318CE1D06457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFA7A70A-6D87-4C97-A006-318CE1D06457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFA7A70A-6D87-4C97-A006-318CE1D06457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFA7A70A-6D87-4C97-A006-318CE1D06457}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
