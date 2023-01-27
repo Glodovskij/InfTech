@@ -20,6 +20,8 @@ namespace InfTech.Services.EmailApi
             builder.Services.Configure<SmtpConfigOptions>(builder.Configuration.GetSection(SmtpConfigOptions.SmtpConfiguration));
             builder.Services.AddTransient<ISmtpClient, SmtpClient>();
 
+            builder.Services.AddHostedService<RabbitMqService>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

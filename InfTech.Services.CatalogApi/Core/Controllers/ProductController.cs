@@ -1,4 +1,5 @@
 ﻿using InfTech.Services.CatalogApi.Domain.DTOs;
+using InfTech.Services.CatalogApi.Domain.Messaging;
 using InfTech.Services.CatalogApi.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,13 @@ namespace InfTech.Services.CatalogApi.Core.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
-        public ProductController(IProductService productService)
+        private readonly IRabbitMqService _rabbitMqService;
+        public ProductController(IProductService productService, IRabbitMqService rabbitMqService)
         {
             _productService = productService;
+            _rabbitMqService = rabbitMqService;
         }
+
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -30,6 +34,7 @@ namespace InfTech.Services.CatalogApi.Core.Controllers
         public async Task<IActionResult> Add([FromBody] ProductDto product)
         {
             await _productService.Add(product);
+            _rabbitMqService.SendMessage($"New product added! {product.Name}");
             return Ok();
         }
 

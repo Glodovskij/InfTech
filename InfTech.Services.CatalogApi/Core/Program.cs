@@ -1,6 +1,8 @@
+using InfTech.Services.CatalogApi.Domain.Messaging;
 using InfTech.Services.CatalogApi.Domain.Repositories;
 using InfTech.Services.CatalogApi.Domain.Services;
-using InfTech.Services.CatalogApi.Infrastructure.Config;
+using InfTech.Services.CatalogApi.Infrastructure.Configuration;
+using InfTech.Services.CatalogApi.Infrastructure.Messaging;
 using InfTech.Services.CatalogApi.Infrastructure.Repositories;
 using InfTech.Services.CatalogApi.Infrastructure.Repositories.Data.Configuration;
 using InfTech.Services.CatalogApi.Infrastructure.Services;
@@ -29,6 +31,8 @@ namespace InfTech.Services.CatalogApi.Core
 
             builder.Services.AddTransient<IProductRepository, ProductRepository>();
             builder.Services.AddTransient<IProductService, ProductService>();
+
+            builder.Services.AddTransient<IRabbitMqService, RabbitMqService>();
 
             var app = builder.Build();
 
