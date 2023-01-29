@@ -34,7 +34,7 @@ namespace InfTech.Services.CatalogApi.Core.Controllers
         public async Task<IActionResult> Add([FromBody] ProductDto product)
         {
             await _productService.Add(product);
-            _rabbitMqService.SendMessage($"New product added! {product.Name}");
+            _rabbitMqService.SendMessage(new RmqMessage() { QueueName ="InfTech-email", Message = $"New product added! {product.Name}" });
             return Ok();
         }
 

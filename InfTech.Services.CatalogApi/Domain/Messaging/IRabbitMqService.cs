@@ -2,6 +2,6 @@
 {
     public interface IRabbitMqService
     {
-        public void SendMessage(string message);
+        public void SendMessage(RmqMessage message);
     }
 }

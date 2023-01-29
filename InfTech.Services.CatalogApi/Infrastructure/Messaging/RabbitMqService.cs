@@ -6,27 +6,35 @@ namespace InfTech.Services.CatalogApi.Infrastructure.Messaging
 {
     public class RabbitMqService : IRabbitMqService
     {
-        public void SendMessage(string message)
+        private readonly IConnection _connection;
+        private readonly IModel _channel;
+        public RabbitMqService() 
         {
             var connectionFactory = new ConnectionFactory() { HostName = "localhost" };
-            using (var connection = connectionFactory.CreateConnection())
-            using (var channel = connection.CreateModel())
-            {
-                channel.QueueDeclare(
-                    queue: "InfTech-email",
-                    durable: false,
-                    exclusive: false,
-                    autoDelete: false,
-                    arguments: null);
+            _connection = connectionFactory.CreateConnection();
+            _channel = _connection.CreateModel();
+        }
+        public void SendMessage(RmqMessage message)
+        {
+            _channel.QueueDeclare(
+                queue: message.QueueName,
+                durable: false,
+                exclusive: false,
+                autoDelete: false,
+                arguments: null);
 
-                var body = Encoding.UTF8.GetBytes(message);
+            var body = Encoding.UTF8.GetBytes(message.Message);
 
-                channel.BasicPublish(
+                _channel.BasicPublish(
                     exchange: "",
-                    routingKey: "InfTech-email",
+                    routingKey: message.QueueName,
                     basicProperties: null,
                     body: body);
-            }
+        }
+        public void Dispose()
+        {
+            _connection.Dispose();
+            _channel.Dispose();
         }
     }
 }
