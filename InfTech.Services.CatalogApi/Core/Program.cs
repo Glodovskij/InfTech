@@ -1,3 +1,4 @@
+using InfTech.Services.CatalogApi.Core.Middlewares;
 using InfTech.Services.CatalogApi.Domain.Messaging;
 using InfTech.Services.CatalogApi.Domain.Repositories;
 using InfTech.Services.CatalogApi.Domain.Services;
@@ -53,6 +54,9 @@ namespace InfTech.Services.CatalogApi.Core
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
+
+            app.UseMiddleware<AuthorizationMiddleware>();
+
             app.UseAuthorization();
 
             app.MapControllers();

@@ -24,9 +24,10 @@ app.MapGet("/login", (HttpContext ctx) =>
 {
     ctx.SignInAsync(new ClaimsPrincipal(new[]
     {
-        new ClaimsIdentity(new List<Claim>() 
+        new ClaimsIdentity(new List<Claim>()
         {
-            new Claim(ClaimTypes.NameIdentifier, Guid.NewGuid().ToString())
+            new Claim(ClaimTypes.NameIdentifier, Guid.NewGuid().ToString()),
+            new Claim(ClaimTypes.Name, "InfTech")
         }, CookieAuthenticationDefaults.AuthenticationScheme)
     }));
     return "ok";
