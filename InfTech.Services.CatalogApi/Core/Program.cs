@@ -6,6 +6,8 @@ using InfTech.Services.CatalogApi.Infrastructure.Messaging;
 using InfTech.Services.CatalogApi.Infrastructure.Repositories;
 using InfTech.Services.CatalogApi.Infrastructure.Repositories.Data.Configuration;
 using InfTech.Services.CatalogApi.Infrastructure.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 
 namespace InfTech.Services.CatalogApi.Core
@@ -17,10 +19,16 @@ namespace InfTech.Services.CatalogApi.Core
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            builder.Services.AddDataProtection()
+                .PersistKeysToFileSystem(new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "InfTech")))
+                .SetApplicationName("IdentityApp");
+
+            builder.Services.AddAuthorization();
+            builder.Services.AddAuthentication()
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme);
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -36,7 +44,6 @@ namespace InfTech.Services.CatalogApi.Core
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -45,8 +52,8 @@ namespace InfTech.Services.CatalogApi.Core
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.MapControllers();
 

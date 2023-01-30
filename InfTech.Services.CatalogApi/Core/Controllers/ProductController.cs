@@ -1,6 +1,7 @@
 ﻿using InfTech.Services.CatalogApi.Domain.DTOs;
 using InfTech.Services.CatalogApi.Domain.Messaging;
 using InfTech.Services.CatalogApi.Domain.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InfTech.Services.CatalogApi.Core.Controllers
@@ -17,6 +18,7 @@ namespace InfTech.Services.CatalogApi.Core.Controllers
             _rabbitMqService = rabbitMqService;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
