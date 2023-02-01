@@ -22,14 +22,16 @@ namespace InfTech.Services.CatalogApi.Core.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _productService.Get());
+            var result = await _productService.Get();
+            return result == null ? NotFound() : Ok(result);
         }
 
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await _productService.Get(id));
+            var result = await _productService.Get(id);
+            return result == null ? NotFound() : Ok(result);
         }
 
         [HttpPost]
@@ -44,14 +46,28 @@ namespace InfTech.Services.CatalogApi.Core.Controllers
         [Route("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _productService.Delete(id);
+            try
+            {
+                await _productService.Delete(id);
+            }
+            catch (ArgumentNullException) 
+            { 
+                return NotFound();
+            }
             return Ok();
         }
 
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] ProductDto product)
         {
-            await _productService.Update(product);
+            try
+            {
+                await _productService.Update(product);
+            }
+            catch (ArgumentNullException)
+            {
+                return NotFound();
+            }
             return Ok();
         }
 

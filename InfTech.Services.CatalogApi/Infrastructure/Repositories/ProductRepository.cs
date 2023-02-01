@@ -11,6 +11,7 @@ namespace InfTech.Services.CatalogApi.Infrastructure.Repositories
         public ProductRepository(CatalogDbContext catalogDbContext)
         {
             _catalogDbContext = catalogDbContext;
+
         }
         public async Task Add(Product entity)
         {
@@ -24,7 +25,7 @@ namespace InfTech.Services.CatalogApi.Infrastructure.Repositories
             await _catalogDbContext.SaveChangesAsync();
         }
 
-        public async Task<Product> Get(int id)
+        public async Task<Product?> Get(int id)
         {
             return await _catalogDbContext.Products.FindAsync(id);
         }
@@ -36,8 +37,15 @@ namespace InfTech.Services.CatalogApi.Infrastructure.Repositories
 
         public async Task Update(Product entity)
         {
-            _catalogDbContext.Update(entity);
-            await _catalogDbContext.SaveChangesAsync();
+            try 
+            { 
+                _catalogDbContext.Update(entity);
+                await _catalogDbContext.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException ex) 
+            {
+                throw new ArgumentNullException("Target object was not found in the database", ex);
+            }
         }
     }
 }

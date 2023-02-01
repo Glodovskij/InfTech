@@ -27,7 +27,7 @@ namespace InfTech.Services.CatalogApi.Infrastructure.Services
             await _productRepository.Delete(product);
         }
 
-        public async Task<ProductDto> Get(int id)
+        public async Task<ProductDto?> Get(int id)
         {
             var product = await _productRepository.Get(id);
             return _mapper.Map<ProductDto>(product);

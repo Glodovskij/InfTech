@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfTech.GatewayApi", "InfTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfTech.Identity", "InfTech.Identity\InfTech.Identity.csproj", "{BC53A85F-BC85-46BD-81B8-D1E102A78EF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfTech.Services.CatalogApi.Tests", "InfTech.Services.CatalogApi.Tests\InfTech.Services.CatalogApi.Tests.csproj", "{BDD30AD3-4A94-469D-9C11-1E402E3CE3DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BC53A85F-BC85-46BD-81B8-D1E102A78EF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC53A85F-BC85-46BD-81B8-D1E102A78EF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC53A85F-BC85-46BD-81B8-D1E102A78EF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDD30AD3-4A94-469D-9C11-1E402E3CE3DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDD30AD3-4A94-469D-9C11-1E402E3CE3DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDD30AD3-4A94-469D-9C11-1E402E3CE3DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDD30AD3-4A94-469D-9C11-1E402E3CE3DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
