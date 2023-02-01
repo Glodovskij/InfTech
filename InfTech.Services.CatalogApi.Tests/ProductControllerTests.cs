@@ -46,7 +46,7 @@ namespace InfTech.Services.CatalogApi.Tests
         {
             // Arrange
             var productServiceMock = new Mock<IProductService>();
-            productServiceMock.Setup(x => x.Get()).ReturnsAsync((List<ProductDto>)null);
+            productServiceMock.Setup(x => x.Get()).ReturnsAsync(new List<ProductDto>());
             var controller = new ProductController(productServiceMock.Object, null);
 
             // Act

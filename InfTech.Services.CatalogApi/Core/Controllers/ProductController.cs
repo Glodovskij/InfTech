@@ -23,7 +23,7 @@ namespace InfTech.Services.CatalogApi.Core.Controllers
         public async Task<IActionResult> GetAll()
         {
             var result = await _productService.Get();
-            return result == null ? NotFound() : Ok(result);
+            return result.Count() == 0 ? NotFound() : Ok(result);
         }
 
         [HttpGet]
